@@ -596,7 +596,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
  .inner-hero-content>div:first-child>p{font-size:16px}
  .inner-hero-image{height:350px;margin-top:35px}
  .inner-hero-deco{display:none}
- .about-story>div>h2{font-size:clamp(51px,9vw,76px)}
+ .about-story>div>h2{font-size:clamp(43px,9vw,76px);overflow-wrap:break-word}
  .about-story p,.detail-cols>div:last-child>p{font-size:16px}
  .about-photo-strip{height:360px}
  .about-photo-strip img:last-child{display:none}
