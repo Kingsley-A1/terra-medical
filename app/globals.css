@@ -770,3 +770,10 @@ body.staff-menu-open{overflow:hidden}
  .collage-left[data-reveal] img,.collage-right[data-reveal] img,
  .principles-image[data-reveal] img,.diagnostic-image[data-reveal] img{transform:none!important;transition:none}
 }
+
+
+/* V1.1 follow-up: protect long specialty names and staff header visibility. */
+.admin-toolbar{position:sticky;top:0;z-index:20}
+@media(max-width:440px){
+ .detail-hero h1.long-specialty{font-size:clamp(49px,13.6vw,56px);overflow-wrap:normal}
+}
