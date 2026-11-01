@@ -1,0 +1,1 @@
+import Link from "next/link";export default function NotFound(){return <main id="main" className="not-found"><span>404 — WRONG TURN</span><h1>Not the page<br/><em>you were looking for.</em></h1><p>Even the best journeys need a little redirecting.</p><Link href="/">Back to Terra Medicals ↗</Link></main>}
