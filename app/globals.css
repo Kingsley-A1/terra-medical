@@ -687,3 +687,86 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
  .admin-table-toolbar input{width:100%;min-width:0}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}.motion-ready [data-reveal]{opacity:1;transform:none}}
+
+
+/* V1.1 — responsive clarity, flatter composition, intentional motion */
+body.staff-menu-open{overflow:hidden}
+.admin-main{isolation:isolate}
+.admin-sidebar{z-index:250}
+.admin-scrim{z-index:240}
+.admin-auth{padding-top:clamp(60px,7vw,108px)}
+/* Keep the public website header and footer out of the distinct staff workspace. */
+.demo-credentials{background:transparent;border:0;border-block:1px solid #d9e6d9;border-radius:0;padding:16px 0;margin-bottom:23px}
+.demo-credentials>strong{color:#4d7d5b}
+.demo-credentials>div{padding:4px 0;align-items:baseline}
+.demo-credentials.small{background:transparent;padding:13px 0 4px;border-top:1px solid #d9e6d9;border-bottom:0}
+.booking-side-card{background:transparent;border-radius:0;padding:0 0 27px;border-bottom:1px solid #d4e3d7}
+.booking-side-notice{border:0;border-radius:0;background:transparent;padding:22px 0;margin-top:0}
+.booking-side-ornament{margin-bottom:31px}
+.booking-side-card h3{max-width:290px}
+.specialty-card{border-color:transparent}
+.specialty-icon{background:#fff9;border-color:transparent}
+.specialty-card:hover{box-shadow:0 22px 38px #31523b12}
+.dna-art svg{filter:drop-shadow(0 16px 24px #286c4d20) saturate(1.25) contrast(1.14)}
+.dna-art .dna-label{font-weight:750;color:#507c63}
+.hero-left .eyebrow{animation:hero-intro .8s cubic-bezier(.22,1,.36,1) .08s both}
+.hero-left h1{animation:hero-intro 1s cubic-bezier(.22,1,.36,1) .19s both}
+.hero-left>p{animation:hero-intro .95s cubic-bezier(.22,1,.36,1) .35s both}
+.hero-buttons{animation:hero-intro .95s cubic-bezier(.22,1,.36,1) .52s both}
+.hero-visual{animation:hero-illustration 1.45s cubic-bezier(.22,1,.36,1) .26s both}
+.hero-foot{animation:hero-intro .8s cubic-bezier(.22,1,.36,1) .8s both}
+@keyframes hero-intro{from{opacity:0;transform:translate3d(0,33px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes hero-illustration{from{opacity:0;transform:translate3d(28px,22px,0) scale(.91)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+.motion-ready [data-reveal]{transform:translate3d(0,46px,0);transition:opacity .88s cubic-bezier(.22,1,.36,1),transform .88s cubic-bezier(.22,1,.36,1)}
+.motion-ready [data-reveal].in-view{opacity:1;transform:translate3d(0,0,0)}
+.motion-ready .specialties-grid [data-reveal]:nth-child(3n+2),
+.motion-ready .doctor-grid [data-reveal]:nth-child(2),
+.motion-ready .journal-grid [data-reveal]:nth-child(2),
+.motion-ready .experience-steps [data-reveal]:nth-child(2){transition-delay:.12s}
+.motion-ready .specialties-grid [data-reveal]:nth-child(3n),
+.motion-ready .doctor-grid [data-reveal]:nth-child(3),
+.motion-ready .journal-grid [data-reveal]:nth-child(3),
+.motion-ready .experience-steps [data-reveal]:nth-child(3){transition-delay:.23s}
+.collage-left[data-reveal] img,.collage-right[data-reveal] img,
+.principles-image[data-reveal] img,.diagnostic-image[data-reveal] img{transform:scale(1.075);transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
+.collage-left[data-reveal].in-view img,.collage-right[data-reveal].in-view img,
+.principles-image[data-reveal].in-view img,.diagnostic-image[data-reveal].in-view img{transform:scale(1)}
+.collage-left[data-reveal].in-view:hover img,.collage-right[data-reveal].in-view:hover img,
+.principles-image[data-reveal].in-view:hover img,.diagnostic-image[data-reveal].in-view:hover img{transform:scale(1.035)}
+.pill-btn .pill-arrow,.header-book-icon,.photo-arrow{transition:transform .4s cubic-bezier(.22,1,.36,1),background .25s}
+.pill-btn:hover .pill-arrow,.doctor-card:hover .photo-arrow,.article-card:hover .photo-arrow{transform:rotate(45deg)}
+.action-link svg,.specialty-card-bottom svg{transition:transform .32s cubic-bezier(.22,1,.36,1)}
+.action-link:hover svg,.specialty-card:hover .specialty-card-bottom svg{transform:translate3d(3px,-3px,0)}
+@media(min-width:761px) and (max-width:900px){
+ .specialty-card h3{font-size:25px}
+}
+@media(max-width:760px){
+ .collage-grid{grid-template-columns:1fr;grid-template-rows:350px 250px;height:auto}
+ .collage-left,.collage-right{grid-column:auto;grid-row:auto}
+ .collage-right{display:block}
+ .collage-stamp{right:15px;bottom:15px;padding:14px 18px;font-size:12px;gap:10px}
+ .collage-stamp svg{width:23px}
+ .hero-stage{min-height:730px}
+ .hero-grid{min-height:660px}
+ .hero-visual{min-height:230px}
+ .admin-auth{padding-top:58px}
+ .booking-side-card{padding-bottom:20px}
+ .motion-ready .specialties-grid [data-reveal],.motion-ready .doctor-grid [data-reveal],
+ .motion-ready .journal-grid [data-reveal],.motion-ready .experience-steps [data-reveal]{transition-delay:0s}
+}
+@media(max-width:440px){
+ .hero-stage{min-height:717px}
+ .hero-grid{min-height:654px}
+ .collage-grid{grid-template-rows:305px 225px}
+}
+@media(max-width:355px){
+ .inner-hero h1{font-size:51px}
+ .detail-hero h1{overflow-wrap:anywhere}
+ .booking-heading h1{font-size:54px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-left .eyebrow,.hero-left h1,.hero-left>p,.hero-buttons,.hero-visual,.hero-foot{animation:none!important;opacity:1;transform:none}
+ .motion-ready [data-reveal],.motion-ready [data-reveal].in-view{opacity:1;transform:none;transition:none}
+ .collage-left[data-reveal] img,.collage-right[data-reveal] img,
+ .principles-image[data-reveal] img,.diagnostic-image[data-reveal] img{transform:none!important;transition:none}
+}

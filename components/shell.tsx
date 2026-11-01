@@ -17,6 +17,7 @@ export function Header(){
  useEffect(()=>{const fn=()=>setScrolled(window.scrollY>24);fn();window.addEventListener("scroll",fn,{passive:true});return()=>window.removeEventListener("scroll",fn)},[]);
  useEffect(()=>{document.body.classList.toggle("menu-lock",open);return()=>document.body.classList.remove("menu-lock")},[open]);
  useEffect(()=>{if(!open)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape"){setOpen(false);trigger.current?.focus()}};document.addEventListener("keydown",onKey);return()=>document.removeEventListener("keydown",onKey)},[open]);
+ if(path==="/admin")return null;
  return <header className={"site-header "+(scrolled?"is-scrolled":"")}>
  <div className="wide header-row"><Wordmark/><nav className="desktop-nav" aria-label="Primary navigation">{nav.map(n=><Link key={n.href} className={path===n.href?"current":""} href={n.href}>{n.label}</Link>)}</nav>
  <Link href="/book" className="header-book"><span>Book a visit</span><span className="header-book-icon"><ArrowUpRight size={17}/></span></Link>
@@ -31,16 +32,20 @@ export function Photo({src,alt,cls="",eager=false}:{src:string;alt:string;cls?:s
 export function SectionHead({label,title,desc,href,link}:{label:string;title:React.ReactNode;desc?:string;href?:string;link?:string}){return <div className="section-head"><div><Eyebrow>{label}</Eyebrow><h2>{title}</h2></div><div className="section-side">{desc&&<p>{desc}</p>}{href&&<ActionLink href={href}>{link||"Explore more"}</ActionLink>}</div></div>}
 export function DemoNotice({compact=false}:{compact?:boolean}){return <div className={"demo-notice "+(compact?"compact":"")}><span className="demo-dot"/> <strong>INTERACTIVE CONCEPT</strong> <span>Illustrative hospital experience. Not an operating healthcare provider.</span></div>}
 export function Footer(){
+ const path=usePathname();
+ if(path==="/admin")return null;
  return <footer className="site-footer"><div className="wide"><div className="footer-hero"><div><Eyebrow light>YOUR NEXT STEP</Eyebrow><h2>Better care starts<br/><em>with a conversation.</em></h2></div><ButtonLink href="/book" variant="lime">Explore booking</ButtonLink></div>
  <div className="footer-rule"/><div className="footer-columns"><div><Wordmark light/><p>A thoughtfully imagined medical experience where expertise meets empathy.</p><span className="footer-bespoke">A concept by <a href={site.makerUrl} target="_blank" rel="noopener noreferrer">Bespoke Technologies ↗</a></span></div><div className="footer-nav"><div><small>EXPLORE</small>{nav.slice(0,3).map(n=><Link href={n.href} key={n.href}>{n.label}</Link>)}</div><div><small>DISCOVER</small>{nav.slice(3).map(n=><Link href={n.href} key={n.href}>{n.label}</Link>)}<Link href="/contact">Contact</Link></div><div><small>DEMO EXPERIENCE</small><Link href="/book">Appointment walkthrough</Link><Link href="/admin">Staff dashboard</Link><Link href="/patient-guide">Patient information</Link></div></div></div>
  <div className="footer-bottom"><span>© 2026 Terra Medicals — Experience concept</span><span>Designed & engineered with intention.</span></div><p className="footer-fine">{site.disclaimer} All photography is illustrative; no photographed person is identified as a Terra Medicals employee. No patient information or payment is collected by this demo.</p></div></footer>
 }
 export function Callout({title="Your wellbeing deserves thoughtful care.",copy="Explore a care journey that puts understanding first.",dark=false}:{title?:string;copy?:string;dark?:boolean}){return <section className={"section-cta "+(dark?"dark":"")}><div className="wide cta-inner"><Eyebrow light>THE TERRA APPROACH</Eyebrow><h2>{title}</h2><p>{copy}</p><ButtonLink href="/book" variant="lime">Book a demo visit</ButtonLink></div><div className="cta-orbit" aria-hidden="true"/></section>}
 export function RevealProvider(){
+ const path=usePathname();
  useEffect(()=>{
  const els=[...document.querySelectorAll<HTMLElement>("[data-reveal]")];
+ if(!("IntersectionObserver" in window)){els.forEach(el=>el.classList.add("in-view"));return;}
  const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){(e.target as HTMLElement).classList.add("in-view");observer.unobserve(e.target)}})},{threshold:0.09,rootMargin:"0px 0px -28px 0px"});
  document.documentElement.classList.add("motion-ready");els.forEach(e=>observer.observe(e));return()=>{observer.disconnect();document.documentElement.classList.remove("motion-ready")};
- },[]);
+ },[path]);
  return null;
 }

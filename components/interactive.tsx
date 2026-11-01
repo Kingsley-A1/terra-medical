@@ -41,6 +41,8 @@ function StatusPill({status}:{status:string}){return <span className={"status-pi
 export function Admin(){
  const [logged,setLogged]=useState(false),[email,setEmail]=useState(""),[password,setPassword]=useState(""),[showPassword,setShowPassword]=useState(false),[error,setError]=useState(""),[tab,setTab]=useState("overview"),[appointments,setAppointments]=useState<Appointment[]>(demoAppointments),[search,setSearch]=useState(""),[filter,setFilter]=useState("All"),[mobile,setMobile]=useState(false);
  useEffect(()=>{setAppointments(readAppointments())},[]);
+ useEffect(()=>{document.body.classList.toggle("staff-menu-open",mobile);return()=>document.body.classList.remove("staff-menu-open")},[mobile]);
+ useEffect(()=>{if(!mobile)return;const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setMobile(false)};document.addEventListener("keydown",onKey);return()=>document.removeEventListener("keydown",onKey)},[mobile]);
  useEffect(()=>{if(!logged)return;const refresh=()=>setAppointments(readAppointments());window.addEventListener("terra-demo-updated",refresh);window.addEventListener("storage",refresh);return()=>{window.removeEventListener("terra-demo-updated",refresh);window.removeEventListener("storage",refresh)}},[logged]);
  function login(e:React.FormEvent){e.preventDefault();if(email.trim()===LOGIN&&password===PASSWORD){setLogged(true);setError("")}else setError("Those credentials don't match the public demo login.") }
  function setStatus(id:string,status:string){const update=appointments.map(a=>a.id===id?{...a,status}:a);setAppointments(update);updateAppointments(update)}
